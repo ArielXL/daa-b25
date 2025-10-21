@@ -1,1 +1,2 @@
-graphviz
+dot==4.0.1
+graphviz==3.2.5

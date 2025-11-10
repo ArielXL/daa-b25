@@ -33,7 +33,7 @@ class Graph:
         self._is_directed = is_directed
         self._is_geo = is_geo
 
-    def add_node(self, node_name: str) -> None:
+    def add_node_name(self, node_name: str) -> None:
         """
         SUMMARY
         -------
@@ -77,7 +77,7 @@ class Graph:
         """
         self._nodes.remove(node)
 
-    def find_node(self, node_name: str) -> bool:
+    def find_node_name(self, node_name: str) -> bool:
         """
         SUMMARY
         -------
@@ -296,3 +296,291 @@ class Graph:
                         print(
                             f"Arista: {edge._source_node._name}-{edge._destination_node._name}"
                         )
+
+    def get_node(self, node_name: str) -> Node | None:
+        """
+        SUMMARY
+        -------
+        Devuelve un nodo por su nombre.
+
+        PARAMETERS
+        ----------
+        :param node_name: nombre del nodo a buscar
+
+        RETURNS
+        -------
+        :return: El nodo encontrado o None si no se encuentra
+        """
+        for node in self._nodes:
+            if isinstance(node, Node):
+                if node._name == node_name:
+                    return node
+        return None
+
+    def load(self, filename: str) -> None:
+        """
+        SUMMARY
+        -------
+        Carga un grafo desde un archivo en formato GraphViz.
+
+        PARAMETERS
+        ----------
+        :param filename: nombre del archivo a cargar
+        """
+        self.load_nodes(filename)
+        self.load_edges(filename)
+        print(
+            f"\nGrafo cargado desde {filename} en formato GraphViz a Grafo con nombre {self._name}.\n"
+        )
+
+    def load_edges(self, filename: str) -> None:
+        """
+        SUMMARY
+        -------
+        Lee el archivo gv y carga las aristas.
+
+        PARAMETERS
+        ----------
+        :param filename: nombre del archivo a cargar
+        """
+        with open(filename) as file:
+            for line in file:
+                if "--" in line or "->" in line:
+                    if "--" in line:
+                        self._is_directed = False
+                        clean_line = line.replace('"', "").replace(";", "").strip()
+                        edge = clean_line.split("--")
+                        source_node = self.get_node(edge[0].strip())
+                        dest_node = self.get_node(edge[1].strip())
+                        self.add_edge(Edge(source_node, dest_node))
+                        self.add_edge(Edge(dest_node, source_node))
+                    elif "->" in line:
+                        self._is_directed = True
+                        clean_line = line.replace('"', "").replace(";", "").strip()
+                        edge = clean_line.split("->")
+                        source_node = self.get_node(edge[0].strip())
+                        dest_node = self.get_node(edge[1].strip())
+                        self.add_edge(Edge(source_node, dest_node))
+        file.close()
+
+    def load_nodes(self, filename: str) -> None:
+        """
+        SUMMARY
+        -------
+        Lee el archivo gv y carga los nodos.
+
+        PARAMETERS
+        ----------
+        :param filename: nombre del archivo a cargar
+        """
+        nodes = []
+        with open(filename) as file:
+            for line in file:
+                if ";" in line and "--" not in line and "->" not in line:
+                    clean_line = line.replace('"', "").replace(";", "").strip()
+                    nodes.append(Node(clean_line))
+        file.close()
+        self._nodes = nodes
+
+    def bfs(self, source: Node, path_to_save: str) -> "Graph":
+        """
+        SUMMARY
+        -------
+        Realiza la búsqueda a lo ancho en el grafo a partir del
+        nodo dado y devuelve el árbol generado.
+
+        PARAMETERS
+        ----------
+        :param source: nodo a tomar como raíz
+        :param path_to_save: ruta donde se guardará el árbol generado
+
+        RETURNS
+        -------
+        :return: árbol
+        """
+        tree = Graph(
+            name=f"BFS-{self._name}",
+            path_to_save=path_to_save,
+            is_directed=self._is_directed,
+        )
+
+        nodes_tree, edges_tree, visited, current_layer = set(), set(), set(), set()
+        nodes_tree.add(Node(source._name))
+        visited.add(source)
+        current_layer.add(source)
+
+        stop = False
+
+        while stop == False:
+            errors = 0
+            count_rec_edges = 0
+            next_layer = set()
+
+            for node in current_layer:
+                if isinstance(node, Node):
+                    for edge in node._edges:
+                        count_rec_edges += 1
+                        if (
+                            isinstance(edge, Edge)
+                            and edge._destination_node not in visited
+                        ):
+                            visited.add(edge._destination_node)
+                            source_node, dest_node = Node(
+                                edge._source_node._name
+                            ), Node(edge._destination_node._name)
+
+                            edge1, edge2 = Edge(source_node, dest_node), Edge(
+                                dest_node, source_node
+                            )
+                            edge1._source_node._edges.append(edge1)
+                            edge2._source_node._edges.append(edge2)
+
+                            nodes_tree.add(dest_node)
+                            next_layer.add(edge._destination_node)
+                            edges_tree.add(edge1)
+                        else:
+                            errors += 1
+
+            current_layer = next_layer
+
+            if errors == count_rec_edges:
+                stop = True
+
+        tree._nodes = list(nodes_tree)
+        tree._edges = list(edges_tree)
+
+        return tree
+
+    def dfs_recursive(self, source: Node, path_to_save: str) -> "Graph":
+        """
+        SUMMARY
+        -------
+        Realiza la búsqueda en profundidad de manera recursiva en el
+        grafo a partir del nodo dado y devuelve el árbol generado.
+
+        PARAMETERS
+        ----------
+        :param source: nodo a tomar como raíz
+
+        RETURNS
+        -------
+        :return: árbol
+        """
+        tree = Graph(
+            name=f"DFS-Recursive-{self._name}",
+            path_to_save=path_to_save,
+            is_directed=self._is_directed,
+        )
+        nodes_tree, edges_tree, visited = set(), set(), set()
+        visited.add(source)
+
+        if isinstance(source, Node):
+            for edge in source._edges:
+                dest_node = edge._destination_node
+                if isinstance(dest_node, Node) and dest_node not in visited:
+                    node1, node2 = Node(edge._source_node._name), Node(
+                        edge._destination_node._name
+                    )
+
+                    edge1, edge2 = Edge(node1, node2), Edge(node2, node1)
+                    edge1._source_node._edges.append(edge1)
+                    edge2._source_node._edges.append(edge2)
+
+                    nodes_tree.add(node2)
+                    edges_tree.add(edge1)
+
+                    nodes, edges = self.dfs_call(dest_node, visited)
+
+                    nodes_tree.update(nodes)
+                    edges_tree.update(edges)
+
+        tree._nodes = list(nodes_tree)
+        tree._edges = list(edges_tree)
+
+        return tree
+
+    def dfs_call(self, source: Node, visited: set) -> tuple[set, set]:
+        """
+        SUMMARY
+        -------
+        Función auxiliar para la búsqueda en profundidad recursiva.
+
+        PARAMETERS
+        ----------
+        :param source: nodo a tomar como raíz
+        :param visited: conjunto de nodos visitados
+
+        RETURNS
+        -------
+        :return: Tupla -> nodes_tree: nodos del subárbol
+                          edges_tree: aristas del subárbol
+        """
+        nodes_tree, edges_tree = set(), set()
+
+        if isinstance(source, Node):
+            visited.add(source)
+            for edge in source._edges:
+                dest_node = edge._destination_node
+                if isinstance(dest_node, Node) and dest_node not in visited:
+                    node1, node2 = Node(edge._source_node._name), Node(
+                        edge._destination_node._name
+                    )
+
+                    edge1, edge2 = Edge(node1, node2), Edge(node2, node1)
+                    edge1._source_node._edges.append(edge1)
+                    edge2._source_node._edges.append(edge2)
+
+                    nodes_tree.add(node2)
+                    edges_tree.add(edge1)
+
+                    nodes, edges = self.dfs_call(dest_node, visited)
+
+                    nodes_tree.update(nodes)
+                    edges_tree.update(edges)
+
+        return nodes_tree, edges_tree
+
+    def dfs_iterative(self, source: Node, path_to_save: str) -> "Graph":
+        """
+        SUMMARY
+        -------
+        Realiza la búsqueda en profundidad de manera iterativa en el
+        grafo a partir del nodo dado y devuelve el árbol generado.
+
+        PARAMETERS
+        ----------
+        :param source: nodo a tomar como raíz
+
+        RETURNS
+        -------
+        :return: árbol
+        """
+        tree = Graph(
+            name=f"DFS-Iterative-{self._name}",
+            path_to_save=path_to_save,
+            is_directed=self._is_directed,
+        )
+        nodes_tree, edges_tree, visited = set(), set(), set()
+        stack = [source]
+
+        while stack:
+            node = stack.pop()
+            if isinstance(node, Node) and node not in visited:
+                visited.add(node)
+                for edge in node._edges:
+                    if isinstance(edge, Edge) and edge not in edges_tree:
+                        node1, node2 = Node(edge._source_node._name), Node(
+                            edge._destination_node._name
+                        )
+
+                        edge1, edge2 = Edge(node1, node2), Edge(node2, node1)
+                        edge1._source_node._edges.append(edge1)
+                        edge2._source_node._edges.append(edge2)
+
+                        nodes_tree.add(node2)
+                        stack.append(edge._destination_node)
+
+        tree._nodes = list(nodes_tree)
+        tree._edges = list(edges_tree)
+
+        return tree

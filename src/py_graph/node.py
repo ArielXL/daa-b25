@@ -45,6 +45,50 @@ class Node:
             return (self._name == other._name) or (self._name == other._name)
         return False
 
+    def __hash__(self) -> int:
+        """
+        SUMMARY
+        -------
+        Este método devuelve el valor hash del nodo, que se basa
+        en su nombre. Esto permite usar nodos como claves en
+        diccionarios y almacenarlos en conjuntos.
+
+        RETURNS
+        -------
+        :return: el valor hash del nodo
+        """
+        return hash(self._name)
+
+    def __lt__(self, other: "Node") -> bool:
+        """
+        SUMMARY
+        -------
+        Este método define la comparación entre dos nodos
+        basada en su nombre. Esto es útil para ordenar nodos.
+
+        PARAMETERS
+        ----------
+        :param other: otro nodo para comparar
+
+        RETURNS
+        -------
+        :return: True si el nodo actual es menor que el otro, False en
+        caso contrario
+        """
+        return self._name < other._name
+
+    def __repr__(self) -> str:
+        """
+        SUMMARY
+        -------
+        Este método devuelve una representación amigable del nodo.
+
+        RETURNS
+        -------
+        :return: una representación amigable del nodo
+        """
+        return f"Nodo({self._name})"
+
     def deg(self) -> int:
         """
         SUMMARY

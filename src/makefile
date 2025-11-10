@@ -1,7 +1,7 @@
 .PHONY: clean
 
 NAME 	   		:= Diseño de Análisis y Algoritmos
-VERSION			:= 1.0
+VERSION			:= 2.0
 DEVELOPERS		:= Ariel Plasencia Díaz
 COPYRIGHT  	    := Copyright © 2025: $(DEVELOPERS)
 
@@ -21,12 +21,16 @@ remove: ## Remove generated files
 	make remove-png
 
 remove-dot: ## Remove generated DOT files
+	rm -rf ../doc/30-nodos/*.dot
 	rm -rf ../doc/50-nodos/*.dot
+	rm -rf ../doc/100-nodos/*.dot
 	rm -rf ../doc/200-nodos/*.dot
 	rm -rf ../doc/500-nodos/*.dot
 
 remove-png: ## Remove generated PNG images
+	rm -rf ../doc/30-nodos/*.png
 	rm -rf ../doc/50-nodos/*.png
+	rm -rf ../doc/100-nodos/*.png
 	rm -rf ../doc/200-nodos/*.png
 	rm -rf ../doc/500-nodos/*.png
 

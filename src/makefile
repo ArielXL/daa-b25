@@ -1,7 +1,7 @@
 .PHONY: clean
 
 NAME 	   		:= Diseño de Análisis y Algoritmos
-VERSION			:= 2.0
+VERSION			:= 3.0
 DEVELOPERS		:= Ariel Plasencia Díaz
 COPYRIGHT  	    := Copyright © 2025: $(DEVELOPERS)
 
@@ -19,6 +19,7 @@ version: ## Show the project version
 remove: ## Remove generated files
 	make remove-dot
 	make remove-png
+	make remove-gv
 
 remove-dot: ## Remove generated DOT files
 	rm -rf ../doc/30-nodos/*.dot
@@ -33,6 +34,13 @@ remove-png: ## Remove generated PNG images
 	rm -rf ../doc/100-nodos/*.png
 	rm -rf ../doc/200-nodos/*.png
 	rm -rf ../doc/500-nodos/*.png
+
+remove-gv: ## Remove generated GRAPHVIZ files
+	rm -rf ../doc/30-nodos/*.gv
+	rm -rf ../doc/50-nodos/*.gv
+	rm -rf ../doc/100-nodos/*.gv
+	rm -rf ../doc/200-nodos/*.gv
+	rm -rf ../doc/500-nodos/*.gv
 
 install: ## Install the project dependencies
 	pip3 install -r ../requirements.txt

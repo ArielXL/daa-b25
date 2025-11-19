@@ -1,3 +1,6 @@
+import heapq
+import random
+
 from py_graph.node import Node
 from py_graph.edge import Edge
 
@@ -579,6 +582,161 @@ class Graph:
 
                         nodes_tree.add(node2)
                         stack.append(edge._destination_node)
+
+        tree._nodes = list(nodes_tree)
+        tree._edges = list(edges_tree)
+
+        return tree
+
+    def assign_weight(self) -> None:
+        """
+        SUMMARY
+        -------
+        Asigna un peso aleatorio a cada arista del grafo.
+        """
+        for node in self._nodes:
+            if isinstance(node, Node):
+                for edge in node._edges:
+                    if (
+                        isinstance(edge, Edge)
+                        and isinstance(edge._source_node, Node)
+                        and isinstance(edge._destination_node, Node)
+                    ):
+                        edge._weight = random.random() * 100
+
+    def save_with_labels_and_color(self, path=set(), last: str = "") -> None:
+        """
+        SUMMARY
+        -------
+        Exporta el grafo en formato GraphViz (.gv), resaltando nodos
+        específicos y coloreando un camino dado.
+
+        PARAMETERS
+        ----------
+        :param path: conjunto de nombres de nodos que forman el camino a resaltar
+        :param last: nombre del nodo a resaltar
+
+        RETURNS
+        -------
+        :return: None
+        """
+        filename = f"{self._path_to_save}{self._name}.gv"
+
+        with open(filename, "w") as file:
+            if self._is_directed:
+                file.write("digraph G {\n")
+                conector = " -> "
+            else:
+                file.write("graph G {\n")
+                conector = " -- "
+
+            for node in self._nodes:
+                if isinstance(node, Node):
+                    if node._name == last:
+                        file.write(
+                            f'    "{node._name}" [label="{node._name}",color=red, fontcolor=red, style=filled, fillcolor=red];\n'
+                        )
+                    else:
+                        file.write(f'    "{node._name}";\n')
+
+            exported_edges = set()
+
+            for node in self._nodes:
+                if isinstance(node, Node):
+                    for edges in node._edges:
+                        if isinstance(edges, Edge):
+                            source_node = edges._source_node
+                            dest_node = edges._destination_node
+                            if isinstance(source_node, Node) and isinstance(
+                                dest_node, Node
+                            ):
+                                if not self._is_directed:
+                                    if (
+                                        dest_node._name,
+                                        source_node._name,
+                                    ) in exported_edges:
+                                        continue
+                                    exported_edges.add(
+                                        (source_node._name, dest_node._name)
+                                    )
+
+                                if node._name in path:
+                                    file.write(
+                                        f'    "{source_node._name}"{conector}"{dest_node._name}" [color=red, penwidth=2, weight=2];\n'
+                                    )
+                                else:
+                                    file.write(
+                                        f'    "{source_node._name}"{conector}"{dest_node._name}" [color=black, penwidth=2, weight=2];\n'
+                                    )
+
+            file.write("}\n")
+
+        print(
+            f"\nGrafo exportado a {filename} con etiquetas y camino resaltado en formato GraphViz.\n"
+        )
+
+    def dijkstra(self, source: Node) -> "Graph":
+        """
+        SUMMARY
+        -------
+        Realiza el algoritmo de Dijkstra en el grafo a partir del nodo dado y devuelve el árbol generado.
+
+        PARAMETERS
+        ----------
+        :param source: nodo a tomar como raíz
+
+        RETURNS
+        -------
+        :return: árbol generado a partir del algoritmo de Dijkstra
+        """
+        tree = Graph(
+            name=f"Dijkstra-{self._name}",
+            path_to_save=self._path_to_save,
+            is_directed=self._is_directed,
+        )
+
+        dist, predecessor, visited, heap = {}, {}, set(), []
+
+        for nodo in self._nodes:
+            dist[nodo] = 99999999999
+        dist[source] = 0
+        heapq.heappush(heap, (0, source))
+
+        while heap:
+            current_dist, current_node = heapq.heappop(heap)
+
+            if dist[current_node] == 99999999999:
+                break
+
+            if isinstance(current_node, Node):
+                for edges in current_node._edges:
+                    if isinstance(edges, Edge):
+                        poss_dist = current_dist + edges._weight
+                        if poss_dist < dist[edges._destination_node]:
+                            dist[edges._destination_node] = poss_dist
+                            predecessor[edges._destination_node] = current_node
+                            heapq.heappush(heap, (poss_dist, edges._destination_node))
+
+            visited.add(current_node)
+
+        nodes_tree, edges_tree = set(), set()
+        nodes_tree.add(Node(source._name))
+
+        for pred in predecessor.keys():
+            source_node, dest_node = Node(predecessor[pred]._name), Node(
+                f"{pred._name}({str(dist[pred])})"
+            )
+            edge1, edge2 = Edge(source_node, dest_node), Edge(dest_node, source_node)
+
+            edge1._source_node._edges.append(edge1)
+            edge2._source_node._edges.append(edge2)
+
+            if source_node._name != source._name:
+                source_node._name = (
+                    f"{source_node._name}({str(dist[predecessor[pred]])})"
+                )
+            nodes_tree.add(dest_node)
+            edges_tree.add(edge1)
 
         tree._nodes = list(nodes_tree)
         tree._edges = list(edges_tree)

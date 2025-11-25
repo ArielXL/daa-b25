@@ -1116,10 +1116,295 @@ from utils.graphic_graph import graphic_graph
 
 # region GRAFO MALLA
 
+# print("GRAFO MALLA")
+
+# graph = malla_graph(m=2, n=30, path_to_save="../doc/30-nodos/")
+# graph.show_graph()
+# graph.save()
+# graphic_graph(
+#     "../doc/30-nodos/Grafo-Malla-No-Dirigido-n=30-m=2.dot",
+#     "../doc/30-nodos/Grafo-Malla-No-Dirigido-n=30-m=2",
+#     profile="mesh",
+# )
+
+# graph.load("../doc/30-nodos/Grafo-Malla-No-Dirigido-n=30-m=2.dot")
+
+# graph.assign_weight()
+# tree = graph.dijkstra(source=graph._nodes[0])
+# tree.show_graph()
+# tree.save_with_labels_and_color(last=graph._nodes[0]._name)
+# graphic_tree(
+#     "../doc/30-nodos/Dijkstra-Grafo-Malla-No-Dirigido-n=30-m=2.gv",
+#     "../doc/30-nodos/Dijkstra-Grafo-Malla-No-Dirigido-n=30-m=2.png",
+# )
+
+# graph = malla_graph(m=2, n=200, path_to_save="../doc/200-nodos/")
+# graph.show_graph()
+# graph.save()
+# graphic_graph(
+#     "../doc/200-nodos/Grafo-Malla-No-Dirigido-n=200-m=2.dot",
+#     "../doc/200-nodos/Grafo-Malla-No-Dirigido-n=200-m=2",
+#     profile="mesh",
+# )
+
+# graph.load("../doc/200-nodos/Grafo-Malla-No-Dirigido-n=200-m=2.dot")
+
+# graph.assign_weight()
+# tree = graph.dijkstra(source=graph._nodes[0])
+# tree.show_graph()
+# tree.save_with_labels_and_color(last=graph._nodes[0]._name)
+# graphic_tree(
+#     "../doc/200-nodos/Dijkstra-Grafo-Malla-No-Dirigido-n=200-m=2.gv",
+#     "../doc/200-nodos/Dijkstra-Grafo-Malla-No-Dirigido-n=200-m=2.png",
+# )
+
+# endregion
+
+
+# region ERDOS - RENYI
+
+# print("GRAFO ERDOS - RENYI")
+
+# graph = erdos_renyi_graph(m=90, n=30, path_to_save="../doc/30-nodos/")
+# graph.show_graph()
+# graph.save()
+# graphic_graph(
+#     "../doc/30-nodos/Grafo-Erdos-Renyi-No-Dirigido-n=30-m=90.dot",
+#     "../doc/30-nodos/Grafo-Erdos-Renyi-No-Dirigido-n=30-m=90",
+#     profile="mesh",
+# )
+
+# graph.load("../doc/30-nodos/Grafo-Erdos-Renyi-No-Dirigido-n=30-m=90.dot")
+
+# graph.assign_weight()
+# tree = graph.dijkstra(source=graph._nodes[0])
+# tree.show_graph()
+# tree.save_with_labels_and_color(last=graph._nodes[0]._name)
+# graphic_tree(
+#     "../doc/30-nodos/Dijkstra-Grafo-Erdos-Renyi-No-Dirigido-n=30-m=90.gv",
+#     "../doc/30-nodos/Dijkstra-Grafo-Erdos-Renyi-No-Dirigido-n=30-m=90.png",
+# )
+
+# graph = erdos_renyi_graph(m=400, n=200, path_to_save="../doc/200-nodos/")
+# graph.show_graph()
+# graph.save()
+# graphic_graph(
+#     "../doc/200-nodos/Grafo-Erdos-Renyi-No-Dirigido-n=200-m=400.dot",
+#     "../doc/200-nodos/Grafo-Erdos-Renyi-No-Dirigido-n=200-m=400",
+#     profile="mesh",
+# )
+
+# graph.load("../doc/200-nodos/Grafo-Erdos-Renyi-No-Dirigido-n=200-m=400.dot")
+
+# graph.assign_weight()
+# tree = graph.dijkstra(source=graph._nodes[0])
+# tree.show_graph()
+# tree.save_with_labels_and_color(last=graph._nodes[0]._name)
+# graphic_tree(
+#     "../doc/200-nodos/Dijkstra-Grafo-Erdos-Renyi-No-Dirigido-n=200-m=400.gv",
+#     "../doc/200-nodos/Dijkstra-Grafo-Erdos-Renyi-No-Dirigido-n=200-m=400.png",
+# )
+
+# endregion
+
+
+# region GILBERT
+
+# print("GRAFO GILBERT")
+
+# graph = gilbert_graph(n=30, p=0.1, path_to_save="../doc/30-nodos/")
+# graph.show_graph()
+# graph.save()
+# graphic_graph(
+#     "../doc/30-nodos/Grafo-Gilbert-No-Dirigido-n=30-p=0.1.dot",
+#     "../doc/30-nodos/Grafo-Gilbert-No-Dirigido-n=30-p=0.1",
+#     profile="mesh",
+# )
+
+# graph.load("../doc/30-nodos/Grafo-Gilbert-No-Dirigido-n=30-p=0.1.dot")
+
+# graph.assign_weight()
+# tree = graph.dijkstra(source=graph._nodes[0])
+# tree.show_graph()
+# tree.save_with_labels_and_color(last=graph._nodes[0]._name)
+# graphic_tree(
+#     "../doc/30-nodos/Dijkstra-Grafo-Gilbert-No-Dirigido-n=30-p=0.1.gv",
+#     "../doc/30-nodos/Dijkstra-Grafo-Gilbert-No-Dirigido-n=30-p=0.1.png",
+# )
+
+# graph = gilbert_graph(n=200, p=0.03, path_to_save="../doc/200-nodos/")
+# graph.show_graph()
+# graph.save()
+# graphic_graph(
+#     "../doc/200-nodos/Grafo-Gilbert-No-Dirigido-n=200-p=0.03.dot",
+#     "../doc/200-nodos/Grafo-Gilbert-No-Dirigido-n=200-p=0.03",
+#     profile="mesh",
+# )
+
+# graph.load("../doc/200-nodos/Grafo-Gilbert-No-Dirigido-n=200-p=0.03.dot")
+
+# graph.assign_weight()
+# tree = graph.dijkstra(source=graph._nodes[0])
+# tree.show_graph()
+# tree.save_with_labels_and_color(last=graph._nodes[0]._name)
+# graphic_tree(
+#     "../doc/200-nodos/Dijkstra-Grafo-Gilbert-No-Dirigido-n=200-p=0.03.gv",
+#     "../doc/200-nodos/Dijkstra-Grafo-Gilbert-No-Dirigido-n=200-p=0.03.png",
+# )
+
+# endregion
+
+
+# region GEOGRÁFICO
+
+# print("GRAFO GEOGRÁFICO")
+
+# graph = geografic_graph(n=30, r=0.3, path_to_save="../doc/30-nodos/")
+# graph.show_graph()
+# graph.save()
+# graphic_graph(
+#     "../doc/30-nodos/Grafo-Geográfico-No-Dirigido-n=30-r=0.3.dot",
+#     "../doc/30-nodos/Grafo-Geográfico-No-Dirigido-n=30-r=0.3",
+#     profile="mesh",
+# )
+
+# graph.load("../doc/30-nodos/Grafo-Geográfico-No-Dirigido-n=30-r=0.3.dot")
+
+# graph.assign_weight()
+# tree = graph.dijkstra(source=graph._nodes[0])
+# tree.show_graph()
+# tree.save_with_labels_and_color(last=graph._nodes[0]._name)
+# graphic_tree(
+#     "../doc/30-nodos/Dijkstra-Grafo-Geográfico-No-Dirigido-n=30-r=0.3.gv",
+#     "../doc/30-nodos/Dijkstra-Grafo-Geográfico-No-Dirigido-n=30-r=0.3.png",
+# )
+
+# graph = geografic_graph(n=200, r=0.13, path_to_save="../doc/200-nodos/")
+# graph.show_graph()
+# graph.save()
+# graphic_graph(
+#     "../doc/200-nodos/Grafo-Geográfico-No-Dirigido-n=200-r=0.13.dot",
+#     "../doc/200-nodos/Grafo-Geográfico-No-Dirigido-n=200-r=0.13",
+#     profile="mesh",
+# )
+
+# graph.load("../doc/200-nodos/Grafo-Geográfico-No-Dirigido-n=200-r=0.13.dot")
+
+# graph.assign_weight()
+# tree = graph.dijkstra(source=graph._nodes[0])
+# tree.show_graph()
+# tree.save_with_labels_and_color(last=graph._nodes[0]._name)
+# graphic_tree(
+#     "../doc/200-nodos/Dijkstra-Grafo-Geográfico-No-Dirigido-n=200-r=0.13.gv",
+#     "../doc/200-nodos/Dijkstra-Grafo-Geográfico-No-Dirigido-n=200-r=0.13.png",
+# )
+
+# endregion
+
+
+# region BARÁBASI - ALBERT
+
+# print("GRAFO BARÁBASI - ALBERT")
+
+# graph = barabasi_albert_graph(n=30, d=3, path_to_save="../doc/30-nodos/")
+# graph.show_graph()
+# graph.save()
+# graphic_graph(
+#     "../doc/30-nodos/Grafo-Barabási-Albert-No-Dirigido-n=30-d=3.dot",
+#     "../doc/30-nodos/Grafo-Barabási-Albert-No-Dirigido-n=30-d=3",
+#     profile="mesh",
+# )
+
+# graph.load("../doc/30-nodos/Grafo-Barabási-Albert-No-Dirigido-n=30-d=3.dot")
+
+# graph.assign_weight()
+# tree = graph.dijkstra(source=graph._nodes[0])
+# tree.show_graph()
+# tree.save_with_labels_and_color(last=graph._nodes[0]._name)
+# graphic_tree(
+#     "../doc/30-nodos/Dijkstra-Grafo-Barabási-Albert-No-Dirigido-n=30-d=3.gv",
+#     "../doc/30-nodos/Dijkstra-Grafo-Barabási-Albert-No-Dirigido-n=30-d=3.png",
+# )
+
+# graph = barabasi_albert_graph(n=200, d=4, path_to_save="../doc/200-nodos/")
+# graph.show_graph()
+# graph.save()
+# graphic_graph(
+#     "../doc/200-nodos/Grafo-Barabási-Albert-No-Dirigido-n=200-d=4.dot",
+#     "../doc/200-nodos/Grafo-Barabási-Albert-No-Dirigido-n=200-d=4",
+#     profile="mesh",
+# )
+
+# graph.load("../doc/200-nodos/Grafo-Barabási-Albert-No-Dirigido-n=200-d=4.dot")
+
+# graph.assign_weight()
+# tree = graph.dijkstra(source=graph._nodes[0])
+# tree.show_graph()
+# tree.save_with_labels_and_color(last=graph._nodes[0]._name)
+# graphic_tree(
+#     "../doc/200-nodos/Dijkstra-Grafo-Barabási-Albert-No-Dirigido-n=200-d=4.gv",
+#     "../doc/200-nodos/Dijkstra-Grafo-Barabási-Albert-No-Dirigido-n=200-d=4.png",
+# )
+
+# endregion
+
+
+# region DOROGOVTSEV - MENDES
+
+# print("GRAFO DOROGOVTSEV - MENDES")
+
+# graph = dorogovtsev_mendes_graph(n=30, path_to_save="../doc/30-nodos/")
+# graph.show_graph()
+# graph.save()
+# graphic_graph(
+#     "../doc/30-nodos/Grafo-Dorogovtsev-Mendes-No-Dirigido-n=30.dot",
+#     "../doc/30-nodos/Grafo-Dorogovtsev-Mendes-No-Dirigido-n=30",
+#     profile="mesh",
+# )
+
+# graph.load("../doc/30-nodos/Grafo-Dorogovtsev-Mendes-No-Dirigido-n=30.dot")
+
+# graph.assign_weight()
+# tree = graph.dijkstra(source=graph._nodes[0])
+# tree.show_graph()
+# tree.save_with_labels_and_color(last=graph._nodes[0]._name)
+# graphic_tree(
+#     "../doc/30-nodos/Dijkstra-Grafo-Dorogovtsev-Mendes-No-Dirigido-n=30.gv",
+#     "../doc/30-nodos/Dijkstra-Grafo-Dorogovtsev-Mendes-No-Dirigido-n=30.png",
+# )
+
+# graph = dorogovtsev_mendes_graph(n=200, path_to_save="../doc/200-nodos/")
+# graph.show_graph()
+# graph.save()
+# graphic_graph(
+#     "../doc/200-nodos/Grafo-Dorogovtsev-Mendes-No-Dirigido-n=200.dot",
+#     "../doc/200-nodos/Grafo-Dorogovtsev-Mendes-No-Dirigido-n=200",
+#     profile="mesh",
+# )
+
+# graph.load("../doc/200-nodos/Grafo-Dorogovtsev-Mendes-No-Dirigido-n=200.dot")
+
+# graph.assign_weight()
+# tree = graph.dijkstra(source=graph._nodes[0])
+# tree.show_graph()
+# tree.save_with_labels_and_color(last=graph._nodes[0]._name)
+# graphic_tree(
+#     "../doc/200-nodos/Dijkstra-Grafo-Dorogovtsev-Mendes-No-Dirigido-n=200.gv",
+#     "../doc/200-nodos/Dijkstra-Grafo-Dorogovtsev-Mendes-No-Dirigido-n=200.png",
+# )
+
+# endregion
+
+# endregion
+
+
+# region PROYECTO 4
+
+# region GRAFO MALLA
+
 print("GRAFO MALLA")
 
 graph = malla_graph(m=2, n=30, path_to_save="../doc/30-nodos/")
-graph.show_graph()
 graph.save()
 graphic_graph(
     "../doc/30-nodos/Grafo-Malla-No-Dirigido-n=30-m=2.dot",
@@ -1128,34 +1413,59 @@ graphic_graph(
 )
 
 graph.load("../doc/30-nodos/Grafo-Malla-No-Dirigido-n=30-m=2.dot")
-
 graph.assign_weight()
-tree = graph.dijkstra(source=graph._nodes[0])
-tree.show_graph()
-tree.save_with_labels_and_color(last=graph._nodes[0]._name)
+
+tree = graph.kruskal_direct()
+tree.save()
 graphic_tree(
-    "../doc/30-nodos/Dijkstra-Grafo-Malla-No-Dirigido-n=30-m=2.gv",
-    "../doc/30-nodos/Dijkstra-Grafo-Malla-No-Dirigido-n=30-m=2.png",
+    "../doc/30-nodos/Kruskal-Directo-Grafo-Malla-No-Dirigido-n=30-m=2.dot",
+    "../doc/30-nodos/Kruskal-Directo-Grafo-Malla-No-Dirigido-n=30-m=2.png",
 )
 
-graph = malla_graph(m=2, n=200, path_to_save="../doc/200-nodos/")
-graph.show_graph()
+tree = graph.kruskal_reverse()
+tree.save()
+graphic_tree(
+    "../doc/30-nodos/Kruskal-Inverso-Grafo-Malla-No-Dirigido-n=30-m=2.dot",
+    "../doc/30-nodos/Kruskal-Inverso-Grafo-Malla-No-Dirigido-n=30-m=2.png",
+)
+
+tree = graph.prim(graph._nodes[0])
+tree.save()
+graphic_tree(
+    "../doc/30-nodos/Prim-Grafo-Malla-No-Dirigido-n=30-m=2.dot",
+    "../doc/30-nodos/Prim-Grafo-Malla-No-Dirigido-n=30-m=2.png",
+)
+
+graph = malla_graph(m=2, n=200, path_to_save="../doc/500-nodos/")
 graph.save()
 graphic_graph(
-    "../doc/200-nodos/Grafo-Malla-No-Dirigido-n=200-m=2.dot",
-    "../doc/200-nodos/Grafo-Malla-No-Dirigido-n=200-m=2",
+    "../doc/500-nodos/Grafo-Malla-No-Dirigido-n=200-m=2.dot",
+    "../doc/500-nodos/Grafo-Malla-No-Dirigido-n=200-m=2",
     profile="mesh",
 )
 
-graph.load("../doc/200-nodos/Grafo-Malla-No-Dirigido-n=200-m=2.dot")
-
+graph.load("../doc/500-nodos/Grafo-Malla-No-Dirigido-n=200-m=2.dot")
 graph.assign_weight()
-tree = graph.dijkstra(source=graph._nodes[0])
-tree.show_graph()
-tree.save_with_labels_and_color(last=graph._nodes[0]._name)
+
+tree = graph.kruskal_direct()
+tree.save()
 graphic_tree(
-    "../doc/200-nodos/Dijkstra-Grafo-Malla-No-Dirigido-n=200-m=2.gv",
-    "../doc/200-nodos/Dijkstra-Grafo-Malla-No-Dirigido-n=200-m=2.png",
+    "../doc/500-nodos/Kruskal-Directo-Grafo-Malla-No-Dirigido-n=200-m=2.dot",
+    "../doc/500-nodos/Kruskal-Directo-Grafo-Malla-No-Dirigido-n=200-m=2.png",
+)
+
+tree = graph.kruskal_reverse()
+tree.save()
+graphic_tree(
+    "../doc/500-nodos/Kruskal-Inverso-Grafo-Malla-No-Dirigido-n=200-m=2.dot",
+    "../doc/500-nodos/Kruskal-Inverso-Grafo-Malla-No-Dirigido-n=200-m=2.png",
+)
+
+tree = graph.prim(graph._nodes[0])
+tree.save()
+graphic_tree(
+    "../doc/500-nodos/Prim-Grafo-Malla-No-Dirigido-n=200-m=2.dot",
+    "../doc/500-nodos/Prim-Grafo-Malla-No-Dirigido-n=200-m=2.png",
 )
 
 # endregion
@@ -1163,46 +1473,70 @@ graphic_tree(
 
 # region ERDOS - RENYI
 
-print("GRAFO ERDOS - RENYI")
+print("\nGRAFO ERDOS - RENYI")
 
-graph = erdos_renyi_graph(m=90, n=30, path_to_save="../doc/30-nodos/")
-graph.show_graph()
+graph = erdos_renyi_graph(m=150, n=30, path_to_save="../doc/30-nodos/")
 graph.save()
 graphic_graph(
-    "../doc/30-nodos/Grafo-Erdos-Renyi-No-Dirigido-n=30-m=90.dot",
-    "../doc/30-nodos/Grafo-Erdos-Renyi-No-Dirigido-n=30-m=90",
+    "../doc/30-nodos/Grafo-Erdos-Renyi-No-Dirigido-n=30-m=150.dot",
+    "../doc/30-nodos/Grafo-Erdos-Renyi-No-Dirigido-n=30-m=150",
     profile="mesh",
 )
 
-graph.load("../doc/30-nodos/Grafo-Erdos-Renyi-No-Dirigido-n=30-m=90.dot")
-
+graph.load("../doc/30-nodos/Grafo-Erdos-Renyi-No-Dirigido-n=30-m=150.dot")
 graph.assign_weight()
-tree = graph.dijkstra(source=graph._nodes[0])
-tree.show_graph()
-tree.save_with_labels_and_color(last=graph._nodes[0]._name)
+
+tree = graph.kruskal_direct()
+tree.save()
 graphic_tree(
-    "../doc/30-nodos/Dijkstra-Grafo-Erdos-Renyi-No-Dirigido-n=30-m=90.gv",
-    "../doc/30-nodos/Dijkstra-Grafo-Erdos-Renyi-No-Dirigido-n=30-m=90.png",
+    "../doc/30-nodos/Kruskal-Directo-Grafo-Erdos-Renyi-No-Dirigido-n=30-m=150.dot",
+    "../doc/30-nodos/Kruskal-Directo-Grafo-Erdos-Renyi-No-Dirigido-n=30-m=150.png",
 )
 
-graph = erdos_renyi_graph(m=400, n=200, path_to_save="../doc/200-nodos/")
-graph.show_graph()
+tree = graph.kruskal_reverse()
+tree.save()
+graphic_tree(
+    "../doc/30-nodos/Kruskal-Inverso-Grafo-Erdos-Renyi-No-Dirigido-n=30-m=150.dot",
+    "../doc/30-nodos/Kruskal-Inverso-Grafo-Erdos-Renyi-No-Dirigido-n=30-m=150.png",
+)
+
+tree = graph.prim(graph._nodes[0])
+tree.save()
+graphic_tree(
+    "../doc/30-nodos/Prim-Grafo-Erdos-Renyi-No-Dirigido-n=30-m=150.dot",
+    "../doc/30-nodos/Prim-Grafo-Erdos-Renyi-No-Dirigido-n=30-m=150.png",
+)
+
+graph = erdos_renyi_graph(m=550, n=200, path_to_save="../doc/500-nodos/")
 graph.save()
 graphic_graph(
-    "../doc/200-nodos/Grafo-Erdos-Renyi-No-Dirigido-n=200-m=400.dot",
-    "../doc/200-nodos/Grafo-Erdos-Renyi-No-Dirigido-n=200-m=400",
+    "../doc/500-nodos/Grafo-Erdos-Renyi-No-Dirigido-n=200-m=550.dot",
+    "../doc/500-nodos/Grafo-Erdos-Renyi-No-Dirigido-n=200-m=550",
     profile="mesh",
 )
 
-graph.load("../doc/200-nodos/Grafo-Erdos-Renyi-No-Dirigido-n=200-m=400.dot")
-
+graph.load("../doc/500-nodos/Grafo-Erdos-Renyi-No-Dirigido-n=200-m=550.dot")
 graph.assign_weight()
-tree = graph.dijkstra(source=graph._nodes[0])
-tree.show_graph()
-tree.save_with_labels_and_color(last=graph._nodes[0]._name)
+
+tree = graph.kruskal_direct()
+tree.save()
 graphic_tree(
-    "../doc/200-nodos/Dijkstra-Grafo-Erdos-Renyi-No-Dirigido-n=200-m=400.gv",
-    "../doc/200-nodos/Dijkstra-Grafo-Erdos-Renyi-No-Dirigido-n=200-m=400.png",
+    "../doc/500-nodos/Kruskal-Directo-Grafo-Erdos-Renyi-No-Dirigido-n=200-m=550.dot",
+    "../doc/500-nodos/Kruskal-Directo-Grafo-Erdos-Renyi-No-Dirigido-n=200-m=550.png",
+)
+
+tree = graph.kruskal_reverse()
+tree.save()
+graphic_tree(
+    "../doc/500-nodos/Kruskal-Inverso-Grafo-Erdos-Renyi-No-Dirigido-n=200-m=550.dot",
+    "../doc/500-nodos/Kruskal-Inverso-Grafo-Erdos-Renyi-No-Dirigido-n=200-m=550.png",
+)
+
+tree = graph.prim(graph._nodes[0])
+tree.save()
+graphic_tree(
+    "../doc/500-nodos/Prim-Grafo-Erdos-Renyi-No-Dirigido-n=200-m=550.dot",
+    "../doc/500-nodos/Prim-Grafo-Erdos-Renyi-No-Dirigido-n=200-m=550.png",
 )
 
 # endregion
@@ -1210,10 +1544,9 @@ graphic_tree(
 
 # region GILBERT
 
-print("GRAFO GILBERT")
+print("\nGRAFO GILBERT")
 
 graph = gilbert_graph(n=30, p=0.1, path_to_save="../doc/30-nodos/")
-graph.show_graph()
 graph.save()
 graphic_graph(
     "../doc/30-nodos/Grafo-Gilbert-No-Dirigido-n=30-p=0.1.dot",
@@ -1222,34 +1555,59 @@ graphic_graph(
 )
 
 graph.load("../doc/30-nodos/Grafo-Gilbert-No-Dirigido-n=30-p=0.1.dot")
-
 graph.assign_weight()
-tree = graph.dijkstra(source=graph._nodes[0])
-tree.show_graph()
-tree.save_with_labels_and_color(last=graph._nodes[0]._name)
+
+tree = graph.kruskal_direct()
+tree.save()
 graphic_tree(
-    "../doc/30-nodos/Dijkstra-Grafo-Gilbert-No-Dirigido-n=30-p=0.1.gv",
-    "../doc/30-nodos/Dijkstra-Grafo-Gilbert-No-Dirigido-n=30-p=0.1.png",
+    "../doc/30-nodos/Kruskal-Directo-Grafo-Gilbert-No-Dirigido-n=30-p=0.1.dot",
+    "../doc/30-nodos/Kruskal-Directo-Grafo-Gilbert-No-Dirigido-n=30-p=0.1.png",
 )
 
-graph = gilbert_graph(n=200, p=0.03, path_to_save="../doc/200-nodos/")
-graph.show_graph()
+tree = graph.kruskal_reverse()
+tree.save()
+graphic_tree(
+    "../doc/30-nodos/Kruskal-Inverso-Grafo-Gilbert-No-Dirigido-n=30-p=0.1.dot",
+    "../doc/30-nodos/Kruskal-Inverso-Grafo-Gilbert-No-Dirigido-n=30-p=0.1.png",
+)
+
+tree = graph.prim(graph._nodes[0])
+tree.save()
+graphic_tree(
+    "../doc/30-nodos/Prim-Grafo-Gilbert-No-Dirigido-n=30-p=0.1.dot",
+    "../doc/30-nodos/Prim-Grafo-Gilbert-No-Dirigido-n=30-p=0.1.png",
+)
+
+graph = gilbert_graph(n=200, p=0.05, path_to_save="../doc/500-nodos/")
 graph.save()
 graphic_graph(
-    "../doc/200-nodos/Grafo-Gilbert-No-Dirigido-n=200-p=0.03.dot",
-    "../doc/200-nodos/Grafo-Gilbert-No-Dirigido-n=200-p=0.03",
+    "../doc/500-nodos/Grafo-Gilbert-No-Dirigido-n=200-p=0.05.dot",
+    "../doc/500-nodos/Grafo-Gilbert-No-Dirigido-n=200-p=0.05",
     profile="mesh",
 )
 
-graph.load("../doc/200-nodos/Grafo-Gilbert-No-Dirigido-n=200-p=0.03.dot")
-
+graph.load("../doc/500-nodos/Grafo-Gilbert-No-Dirigido-n=200-p=0.05.dot")
 graph.assign_weight()
-tree = graph.dijkstra(source=graph._nodes[0])
-tree.show_graph()
-tree.save_with_labels_and_color(last=graph._nodes[0]._name)
+
+tree = graph.kruskal_direct()
+tree.save()
 graphic_tree(
-    "../doc/200-nodos/Dijkstra-Grafo-Gilbert-No-Dirigido-n=200-p=0.03.gv",
-    "../doc/200-nodos/Dijkstra-Grafo-Gilbert-No-Dirigido-n=200-p=0.03.png",
+    "../doc/500-nodos/Kruskal-Directo-Grafo-Gilbert-No-Dirigido-n=200-p=0.05.dot",
+    "../doc/500-nodos/Kruskal-Directo-Grafo-Gilbert-No-Dirigido-n=200-p=0.05.png",
+)
+
+tree = graph.kruskal_reverse()
+tree.save()
+graphic_tree(
+    "../doc/500-nodos/Kruskal-Inverso-Grafo-Gilbert-No-Dirigido-n=200-p=0.05.dot",
+    "../doc/500-nodos/Kruskal-Inverso-Grafo-Gilbert-No-Dirigido-n=200-p=0.05.png",
+)
+
+tree = graph.prim(graph._nodes[0])
+tree.save()
+graphic_tree(
+    "../doc/500-nodos/Prim-Grafo-Gilbert-No-Dirigido-n=200-p=0.05.dot",
+    "../doc/500-nodos/Prim-Grafo-Gilbert-No-Dirigido-n=200-p=0.05.png",
 )
 
 # endregion
@@ -1257,46 +1615,70 @@ graphic_tree(
 
 # region GEOGRÁFICO
 
-print("GRAFO GEOGRÁFICO")
+print("\nGRAFO GEOGRÁFICO")
 
-graph = geografic_graph(n=30, r=0.3, path_to_save="../doc/30-nodos/")
-graph.show_graph()
+graph = geografic_graph(n=30, r=0.35, path_to_save="../doc/30-nodos/")
 graph.save()
 graphic_graph(
-    "../doc/30-nodos/Grafo-Geográfico-No-Dirigido-n=30-r=0.3.dot",
-    "../doc/30-nodos/Grafo-Geográfico-No-Dirigido-n=30-r=0.3",
+    "../doc/30-nodos/Grafo-Geográfico-No-Dirigido-n=30-r=0.35.dot",
+    "../doc/30-nodos/Grafo-Geográfico-No-Dirigido-n=30-r=0.35",
     profile="mesh",
 )
 
-graph.load("../doc/30-nodos/Grafo-Geográfico-No-Dirigido-n=30-r=0.3.dot")
-
+graph.load("../doc/30-nodos/Grafo-Geográfico-No-Dirigido-n=30-r=0.35.dot")
 graph.assign_weight()
-tree = graph.dijkstra(source=graph._nodes[0])
-tree.show_graph()
-tree.save_with_labels_and_color(last=graph._nodes[0]._name)
+
+tree = graph.kruskal_direct()
+tree.save()
 graphic_tree(
-    "../doc/30-nodos/Dijkstra-Grafo-Geográfico-No-Dirigido-n=30-r=0.3.gv",
-    "../doc/30-nodos/Dijkstra-Grafo-Geográfico-No-Dirigido-n=30-r=0.3.png",
+    "../doc/30-nodos/Kruskal-Directo-Grafo-Geográfico-No-Dirigido-n=30-r=0.35.dot",
+    "../doc/30-nodos/Kruskal-Directo-Grafo-Geográfico-No-Dirigido-n=30-r=0.35.png",
 )
 
-graph = geografic_graph(n=200, r=0.13, path_to_save="../doc/200-nodos/")
-graph.show_graph()
+tree = graph.kruskal_reverse()
+tree.save()
+graphic_tree(
+    "../doc/30-nodos/Kruskal-Inverso-Grafo-Geográfico-No-Dirigido-n=30-r=0.35.dot",
+    "../doc/30-nodos/Kruskal-Inverso-Grafo-Geográfico-No-Dirigido-n=30-r=0.35.png",
+)
+
+tree = graph.prim(graph._nodes[0])
+tree.save()
+graphic_tree(
+    "../doc/30-nodos/Prim-Grafo-Geográfico-No-Dirigido-n=30-r=0.35.dot",
+    "../doc/30-nodos/Prim-Grafo-Geográfico-No-Dirigido-n=30-r=0.35.png",
+)
+
+graph = geografic_graph(n=200, r=0.35, path_to_save="../doc/500-nodos/")
 graph.save()
 graphic_graph(
-    "../doc/200-nodos/Grafo-Geográfico-No-Dirigido-n=200-r=0.13.dot",
-    "../doc/200-nodos/Grafo-Geográfico-No-Dirigido-n=200-r=0.13",
+    "../doc/500-nodos/Grafo-Geográfico-No-Dirigido-n=200-r=0.35.dot",
+    "../doc/500-nodos/Grafo-Geográfico-No-Dirigido-n=200-r=0.35",
     profile="mesh",
 )
 
-graph.load("../doc/200-nodos/Grafo-Geográfico-No-Dirigido-n=200-r=0.13.dot")
-
+graph.load("../doc/500-nodos/Grafo-Geográfico-No-Dirigido-n=200-r=0.35.dot")
 graph.assign_weight()
-tree = graph.dijkstra(source=graph._nodes[0])
-tree.show_graph()
-tree.save_with_labels_and_color(last=graph._nodes[0]._name)
+
+tree = graph.kruskal_direct()
+tree.save()
 graphic_tree(
-    "../doc/200-nodos/Dijkstra-Grafo-Geográfico-No-Dirigido-n=200-r=0.13.gv",
-    "../doc/200-nodos/Dijkstra-Grafo-Geográfico-No-Dirigido-n=200-r=0.13.png",
+    "../doc/500-nodos/Kruskal-Directo-Grafo-Geográfico-No-Dirigido-n=200-r=0.35.dot",
+    "../doc/500-nodos/Kruskal-Directo-Grafo-Geográfico-No-Dirigido-n=200-r=0.35.png",
+)
+
+tree = graph.kruskal_reverse()
+tree.save()
+graphic_tree(
+    "../doc/500-nodos/Kruskal-Inverso-Grafo-Geográfico-No-Dirigido-n=200-r=0.35.dot",
+    "../doc/500-nodos/Kruskal-Inverso-Grafo-Geográfico-No-Dirigido-n=200-r=0.35.png",
+)
+
+tree = graph.prim(graph._nodes[0])
+tree.save()
+graphic_tree(
+    "../doc/500-nodos/Prim-Grafo-Geográfico-No-Dirigido-n=200-r=0.35.dot",
+    "../doc/500-nodos/Prim-Grafo-Geográfico-No-Dirigido-n=200-r=0.35.png",
 )
 
 # endregion
@@ -1304,10 +1686,9 @@ graphic_tree(
 
 # region BARÁBASI - ALBERT
 
-print("GRAFO BARÁBASI - ALBERT")
+print("\nGRAFO BARÁBASI - ALBERT")
 
 graph = barabasi_albert_graph(n=30, d=3, path_to_save="../doc/30-nodos/")
-graph.show_graph()
 graph.save()
 graphic_graph(
     "../doc/30-nodos/Grafo-Barabási-Albert-No-Dirigido-n=30-d=3.dot",
@@ -1316,34 +1697,59 @@ graphic_graph(
 )
 
 graph.load("../doc/30-nodos/Grafo-Barabási-Albert-No-Dirigido-n=30-d=3.dot")
-
 graph.assign_weight()
-tree = graph.dijkstra(source=graph._nodes[0])
-tree.show_graph()
-tree.save_with_labels_and_color(last=graph._nodes[0]._name)
+
+tree = graph.kruskal_direct()
+tree.save()
 graphic_tree(
-    "../doc/30-nodos/Dijkstra-Grafo-Barabási-Albert-No-Dirigido-n=30-d=3.gv",
-    "../doc/30-nodos/Dijkstra-Grafo-Barabási-Albert-No-Dirigido-n=30-d=3.png",
+    "../doc/30-nodos/Kruskal-Directo-Grafo-Barabási-Albert-No-Dirigido-n=30-d=3.dot",
+    "../doc/30-nodos/Kruskal-Directo-Grafo-Barabási-Albert-No-Dirigido-n=30-d=3.png",
 )
 
-graph = barabasi_albert_graph(n=200, d=4, path_to_save="../doc/200-nodos/")
-graph.show_graph()
+tree = graph.kruskal_reverse()
+tree.save()
+graphic_tree(
+    "../doc/30-nodos/Kruskal-Inverso-Grafo-Barabási-Albert-No-Dirigido-n=30-d=3.dot",
+    "../doc/30-nodos/Kruskal-Inverso-Grafo-Barabási-Albert-No-Dirigido-n=30-d=3.png",
+)
+
+tree = graph.prim(graph._nodes[0])
+tree.save()
+graphic_tree(
+    "../doc/30-nodos/Prim-Grafo-Barabási-Albert-No-Dirigido-n=30-d=3.dot",
+    "../doc/30-nodos/Prim-Grafo-Barabási-Albert-No-Dirigido-n=30-d=3.png",
+)
+
+graph = barabasi_albert_graph(n=200, d=4, path_to_save="../doc/500-nodos/")
 graph.save()
 graphic_graph(
-    "../doc/200-nodos/Grafo-Barabási-Albert-No-Dirigido-n=200-d=4.dot",
-    "../doc/200-nodos/Grafo-Barabási-Albert-No-Dirigido-n=200-d=4",
+    "../doc/500-nodos/Grafo-Barabási-Albert-No-Dirigido-n=200-d=4.dot",
+    "../doc/500-nodos/Grafo-Barabási-Albert-No-Dirigido-n=200-d=4",
     profile="mesh",
 )
 
-graph.load("../doc/200-nodos/Grafo-Barabási-Albert-No-Dirigido-n=200-d=4.dot")
-
+graph.load("../doc/500-nodos/Grafo-Barabási-Albert-No-Dirigido-n=200-d=4.dot")
 graph.assign_weight()
-tree = graph.dijkstra(source=graph._nodes[0])
-tree.show_graph()
-tree.save_with_labels_and_color(last=graph._nodes[0]._name)
+
+tree = graph.kruskal_direct()
+tree.save()
 graphic_tree(
-    "../doc/200-nodos/Dijkstra-Grafo-Barabási-Albert-No-Dirigido-n=200-d=4.gv",
-    "../doc/200-nodos/Dijkstra-Grafo-Barabási-Albert-No-Dirigido-n=200-d=4.png",
+    "../doc/500-nodos/Kruskal-Directo-Grafo-Barabási-Albert-No-Dirigido-n=200-d=4.dot",
+    "../doc/500-nodos/Kruskal-Directo-Grafo-Barabási-Albert-No-Dirigido-n=200-d=4.png",
+)
+
+tree = graph.kruskal_reverse()
+tree.save()
+graphic_tree(
+    "../doc/500-nodos/Kruskal-Inverso-Grafo-Barabási-Albert-No-Dirigido-n=200-d=4.dot",
+    "../doc/500-nodos/Kruskal-Inverso-Grafo-Barabási-Albert-No-Dirigido-n=200-d=4.png",
+)
+
+tree = graph.prim(graph._nodes[0])
+tree.save()
+graphic_tree(
+    "../doc/500-nodos/Prim-Grafo-Barabási-Albert-No-Dirigido-n=200-d=4.dot",
+    "../doc/500-nodos/Prim-Grafo-Barabási-Albert-No-Dirigido-n=200-d=4.png",
 )
 
 # endregion
@@ -1351,10 +1757,9 @@ graphic_tree(
 
 # region DOROGOVTSEV - MENDES
 
-print("GRAFO DOROGOVTSEV - MENDES")
+print("\nGRAFO DOROGOVTSEV - MENDES")
 
 graph = dorogovtsev_mendes_graph(n=30, path_to_save="../doc/30-nodos/")
-graph.show_graph()
 graph.save()
 graphic_graph(
     "../doc/30-nodos/Grafo-Dorogovtsev-Mendes-No-Dirigido-n=30.dot",
@@ -1363,34 +1768,59 @@ graphic_graph(
 )
 
 graph.load("../doc/30-nodos/Grafo-Dorogovtsev-Mendes-No-Dirigido-n=30.dot")
-
 graph.assign_weight()
-tree = graph.dijkstra(source=graph._nodes[0])
-tree.show_graph()
-tree.save_with_labels_and_color(last=graph._nodes[0]._name)
+
+tree = graph.kruskal_direct()
+tree.save()
 graphic_tree(
-    "../doc/30-nodos/Dijkstra-Grafo-Dorogovtsev-Mendes-No-Dirigido-n=30.gv",
-    "../doc/30-nodos/Dijkstra-Grafo-Dorogovtsev-Mendes-No-Dirigido-n=30.png",
+    "../doc/30-nodos/Kruskal-Directo-Grafo-Dorogovtsev-Mendes-No-Dirigido-n=30.dot",
+    "../doc/30-nodos/Kruskal-Directo-Grafo-Dorogovtsev-Mendes-No-Dirigido-n=30.png",
 )
 
-graph = dorogovtsev_mendes_graph(n=200, path_to_save="../doc/200-nodos/")
-graph.show_graph()
+tree = graph.kruskal_reverse()
+tree.save()
+graphic_tree(
+    "../doc/30-nodos/Kruskal-Inverso-Grafo-Dorogovtsev-Mendes-No-Dirigido-n=30.dot",
+    "../doc/30-nodos/Kruskal-Inverso-Grafo-Dorogovtsev-Mendes-No-Dirigido-n=30.png",
+)
+
+tree = graph.prim(graph._nodes[0])
+tree.save()
+graphic_tree(
+    "../doc/30-nodos/Prim-Grafo-Dorogovtsev-Mendes-No-Dirigido-n=30.dot",
+    "../doc/30-nodos/Prim-Grafo-Dorogovtsev-Mendes-No-Dirigido-n=30.png",
+)
+
+graph = dorogovtsev_mendes_graph(n=200, path_to_save="../doc/500-nodos/")
 graph.save()
 graphic_graph(
-    "../doc/200-nodos/Grafo-Dorogovtsev-Mendes-No-Dirigido-n=200.dot",
-    "../doc/200-nodos/Grafo-Dorogovtsev-Mendes-No-Dirigido-n=200",
+    "../doc/500-nodos/Grafo-Dorogovtsev-Mendes-No-Dirigido-n=200.dot",
+    "../doc/500-nodos/Grafo-Dorogovtsev-Mendes-No-Dirigido-n=200",
     profile="mesh",
 )
 
-graph.load("../doc/200-nodos/Grafo-Dorogovtsev-Mendes-No-Dirigido-n=200.dot")
-
+graph.load("../doc/500-nodos/Grafo-Dorogovtsev-Mendes-No-Dirigido-n=200.dot")
 graph.assign_weight()
-tree = graph.dijkstra(source=graph._nodes[0])
-tree.show_graph()
-tree.save_with_labels_and_color(last=graph._nodes[0]._name)
+
+tree = graph.kruskal_direct()
+tree.save()
 graphic_tree(
-    "../doc/200-nodos/Dijkstra-Grafo-Dorogovtsev-Mendes-No-Dirigido-n=200.gv",
-    "../doc/200-nodos/Dijkstra-Grafo-Dorogovtsev-Mendes-No-Dirigido-n=200.png",
+    "../doc/500-nodos/Kruskal-Directo-Grafo-Dorogovtsev-Mendes-No-Dirigido-n=200.dot",
+    "../doc/500-nodos/Kruskal-Directo-Grafo-Dorogovtsev-Mendes-No-Dirigido-n=200.png",
+)
+
+tree = graph.kruskal_reverse()
+tree.save()
+graphic_tree(
+    "../doc/500-nodos/Kruskal-Inverso-Grafo-Dorogovtsev-Mendes-No-Dirigido-n=200.dot",
+    "../doc/500-nodos/Kruskal-Inverso-Grafo-Dorogovtsev-Mendes-No-Dirigido-n=200.png",
+)
+
+tree = graph.prim(graph._nodes[0])
+tree.save()
+graphic_tree(
+    "../doc/500-nodos/Prim-Grafo-Dorogovtsev-Mendes-No-Dirigido-n=200.dot",
+    "../doc/500-nodos/Prim-Grafo-Dorogovtsev-Mendes-No-Dirigido-n=200.png",
 )
 
 # endregion

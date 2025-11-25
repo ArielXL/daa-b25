@@ -1,7 +1,7 @@
 .PHONY: clean
 
 NAME 	   		:= Diseño de Análisis y Algoritmos
-VERSION			:= 3.0
+VERSION			:= 4.0
 DEVELOPERS		:= Ariel Plasencia Díaz
 COPYRIGHT  	    := Copyright © 2025: $(DEVELOPERS)
 

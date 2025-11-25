@@ -4,6 +4,8 @@ import random
 from py_graph.node import Node
 from py_graph.edge import Edge
 
+from py_graph.union_find import UnionFind
+
 
 class Graph:
 
@@ -273,9 +275,15 @@ class Graph:
                                         (source_node._name, destination_node._name)
                                     )
 
-                                file.write(
-                                    f'    "{source_node._name}"{conector}"{destination_node._name}";\n'
-                                )
+                                if edge._weight == 0:
+                                    file.write(
+                                        f'    "{source_node._name}"{conector}"{destination_node._name}";\n'
+                                    )
+                                else:
+                                    label = "[label=" + str(edge._weight) + "]"
+                                    file.write(
+                                        f'    "{source_node._name}"{conector}"{destination_node._name}"{label};\n'
+                                    )
 
             file.write("}\n")
 
@@ -594,15 +602,37 @@ class Graph:
         -------
         Asigna un peso aleatorio a cada arista del grafo.
         """
-        for node in self._nodes:
-            if isinstance(node, Node):
-                for edge in node._edges:
-                    if (
-                        isinstance(edge, Edge)
-                        and isinstance(edge._source_node, Node)
-                        and isinstance(edge._destination_node, Node)
-                    ):
-                        edge._weight = random.random() * 100
+        if self._is_directed:
+            for node in self._nodes:
+                if isinstance(node, Node):
+                    for edge in node._edges:
+                        if (
+                            isinstance(edge, Edge)
+                            and isinstance(edge._source_node, Node)
+                            and isinstance(edge._destination_node, Node)
+                        ):
+                            edge._weight = random.random() * 100
+        else:
+            for node in self._nodes:
+                if isinstance(node, Node):
+                    for edge in node._edges:
+                        if (
+                            isinstance(edge, Edge)
+                            and isinstance(edge._source_node, Node)
+                            and isinstance(edge._destination_node, Node)
+                        ):
+                            if edge._weight == 0:
+                                new_weight = random.random() * 100
+                                edge._weight = new_weight
+                                dest_node = edge._destination_node
+
+                                for reverse_edge in dest_node._edges:
+                                    if (
+                                        isinstance(reverse_edge, Edge)
+                                        and reverse_edge._destination_node == node
+                                    ):
+                                        reverse_edge._weight = new_weight
+                                        break
 
     def save_with_labels_and_color(self, path=set(), last: str = "") -> None:
         """
@@ -741,4 +771,201 @@ class Graph:
         tree._nodes = list(nodes_tree)
         tree._edges = list(edges_tree)
 
+        return tree
+
+    def kruskal_direct(self) -> "Graph":
+        """
+        SUMMARY
+        -------
+        Realiza el algoritmo de Kruskal directo en el grafo y devuelve el
+        árbol de expansión mínima generado.
+
+        RETURNS
+        -------
+        :return: Árbol generado a partir del algoritmo de Kruskal directo
+        """
+        tree = Graph(
+            name=f"Kruskal-Directo-{self._name}",
+            path_to_save=self._path_to_save,
+            is_directed=self._is_directed,
+        )
+        value_mst = 0
+        union_find = UnionFind(self._nodes)
+        sorted_edges = sorted(self._edges, key=lambda edge: edge._weight)
+
+        for edge in sorted_edges:
+            source_node = edge._source_node
+            dest_node = edge._destination_node
+
+            if union_find.find(source_node) != union_find.find(dest_node):
+                union_find.union(source_node, dest_node)
+
+                node1, node2 = Node(source_node._name), Node(dest_node._name)
+                edge1, edge2 = Edge(node1, node2, edge._weight), Edge(
+                    node2, node1, edge._weight
+                )
+
+                node1._edges.append(edge1)
+                node2._edges.append(edge2)
+                tree._nodes.append(node1)
+                tree._nodes.append(node2)
+                tree._edges.append(edge1)
+
+                value_mst += edge._weight
+
+        value_mst = round(value_mst, 3)
+        print(
+            f"El valor del árbol de expansión mínima con el algoritmo de Kruskal directo es {value_mst}\n"
+        )
+        return tree
+
+    def create_tree(self, edge_to_remove: Edge) -> "Graph":
+        """
+        SUMMARY
+        -------
+        Crea un árbol eliminando una arista específica del grafo.
+
+        PARAMETERS
+        ----------
+        :param edge_to_remove: arista a eliminar
+
+        RETURNS
+        -------
+        :return: árbol sin la arista eliminada
+        """
+        base_name = self._name
+        if base_name.startswith("Kruskal-Inverso-"):
+            base_name = base_name.replace("Kruskal-Inverso-", "")
+        tree = Graph(
+            name=f"Kruskal-Inverso-{base_name}",
+            path_to_save=self._path_to_save,
+            is_directed=self._is_directed,
+        )
+
+        node_map = {node._name: Node(node._name) for node in self._nodes}
+        tree._nodes = list(node_map.values())
+
+        for edge in self._edges:
+            if edge != edge_to_remove:
+                source_node, dest_node = (
+                    node_map[edge._source_node._name],
+                    node_map[edge._destination_node._name],
+                )
+                edge1, edge2 = Edge(source_node, dest_node, edge._weight), Edge(
+                    dest_node, source_node, edge._weight
+                )
+                source_node._edges.append(edge1)
+                dest_node._edges.append(edge2)
+                tree._edges.append(edge1)
+
+        return tree
+
+    def kruskal_reverse(self) -> "Graph":
+        """
+        SUMMARY
+        -------
+        Realiza el algoritmo de Kruskal inverso en el grafo y devuelve el
+        árbol de expansión mínima generado.
+
+        RETURNS
+        -------
+        :return: Árbol generado a partir del algoritmo de Kruskal inverso
+        """
+        tree = Graph(
+            name=f"Kruskal-Inverso-{self._name}",
+            path_to_save=self._path_to_save,
+            is_directed=self._is_directed,
+        )
+        tree._nodes = self._nodes
+        tree._edges = self._edges
+
+        value_mst = 0
+        sorted_edges = sorted(self._edges, key=lambda edge: edge._weight, reverse=True)
+
+        for edge in self._edges:
+            value_mst += edge._weight
+
+        for edge in sorted_edges:
+            tree2 = tree.create_tree(edge)
+            source = tree2._nodes[0]
+            bfs = tree2.bfs(source=source, path_to_save=tree2._path_to_save)
+
+            if len(bfs._nodes) == len(tree2._nodes):
+                tree = tree2
+                value_mst -= edge._weight
+
+        value_mst = round(value_mst, 3)
+        print(
+            f"\nEl valor del árbol de expansión mínima con el algoritmo de Kruskal inverso es {value_mst}\n"
+        )
+        return tree
+
+    def prim(self, source: Node) -> "Graph":
+        """
+        SUMMARY
+        -------
+        Realiza el algoritmo de Prim en el grafo y devuelve el
+        árbol de expansión mínima generado.
+
+        PARAMETERS
+        ----------
+        :param source: Nodo inicial
+
+        RETURNS
+        -------
+        :return: Árbol generado a partir del algoritmo de Prim
+        """
+        tree = Graph(
+            name=f"Prim-{self._name}",
+            path_to_save=self._path_to_save,
+            is_directed=self._is_directed,
+        )
+
+        value_mst = 0
+        visited, visited_edges = set(), set()
+
+        dists = {node: float("inf") for node in self._nodes}
+        dists[source] = 0
+
+        queue = []
+        heapq.heappush(queue, (0, source, None))
+
+        while queue:
+            weight, node, parent = heapq.heappop(queue)
+            if node in visited:
+                continue
+
+            if parent is not None:
+                source_node, dest_node = Node(parent._name), Node(node._name)
+                edge1, edge2 = Edge(source_node, dest_node, weight), Edge(
+                    dest_node, source_node, weight
+                )
+
+                source_node._edges.append(edge1)
+                dest_node._edges.append(edge2)
+                tree._nodes.append(source_node)
+                tree._edges.append(edge1)
+
+            if weight == dists[node]:
+                value_mst += weight
+
+            visited.add(node)
+            edges = node._edges
+
+            for edge in edges:
+                if isinstance(edge, Edge):
+                    if (
+                        edge not in visited_edges
+                        and edge._weight < dists[edge._destination_node]
+                    ):
+                        visited_edges.add(edge)
+                        dists[edge._destination_node] = edge._weight
+                        heapq.heappush(
+                            queue, (edge._weight, edge._destination_node, node)
+                        )
+
+        value_mst = round(value_mst, 3)
+        print(
+            f"\nEl valor del árbol de expansión mínima con el algoritmo de Prim es {value_mst}\n"
+        )
         return tree
